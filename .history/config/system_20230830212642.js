@@ -1,0 +1,1 @@
+// chứa biến hệ thống
