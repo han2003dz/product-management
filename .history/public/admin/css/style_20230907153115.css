@@ -1,7 +1,9 @@
 a {
   text-decoration: none;
 }
-
+.active {
+  color: #fff;
+}
 /* Header */
 .header {
   background: #202020;
@@ -33,7 +35,7 @@ a {
   margin: 15px;
   /* position: relative; */
   margin-left: 150px;
-  width: 1050px;
+  width: 1170px;
 }
 /* End Body */
 

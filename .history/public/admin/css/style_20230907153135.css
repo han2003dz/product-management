@@ -33,7 +33,7 @@ a {
   margin: 15px;
   /* position: relative; */
   margin-left: 150px;
-  width: 1050px;
+  width: 1170px;
 }
 /* End Body */
 
@@ -58,4 +58,8 @@ h1 {
 
 .img-products {
   object-fit: cover;
+}
+
+.active {
+  color: #fff;
 }
