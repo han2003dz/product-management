@@ -1,7 +1,7 @@
 mixin pagination(pagination)
     nav(aria-label='Page navigation example')
         ul.pagination.m-0
-            -var maxPagesToShow = 3;
+            -var maxPageToShow = 3;
             -var startPage = Math.max(1, pagination.currentPage - Math.floor(maxPagesToShow/2));
             -var endPage = Math.min(pagination.totalPages, startPage + maxPagesToShow - 1);
             if(pagination.currentPage > 1)
