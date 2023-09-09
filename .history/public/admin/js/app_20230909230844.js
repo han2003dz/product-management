@@ -97,32 +97,8 @@ if (checkBoxMulti) {
 const formChangeMulti = document.querySelector("[form-change-multi]");
 if (formChangeMulti) {
   formChangeMulti.addEventListener("submit", (e) => {
-    // để khi submit trang web không bị load lại trang do sự kiện submit
-    e.preventDefault();
-
-    // lấy ra table có element checkbox-multi
-    const checkBoxMulti = document.querySelector("[checkbox-multi]");
-
-    // lấy ra các ô checkbox đã check
-    const inputsChecked = checkBoxMulti.querySelectorAll(
-      "input[name='id']:checked"
-    );
-
-    // nếu người dùng đã check thì mới submit
-    if (inputsChecked.length > 0) {
-      let arrIds = [];
-      const inputIds = formChangeMulti.querySelector("input[name='ids']");
-      inputsChecked.forEach((input) => {
-        // value = item.id
-        const id = input.value;
-        arrIds.push(id);
-      });
-      inputIds.value = arrIds.join(",");
-      formChangeMulti.submit();
-    } else {
-      alert("vui lòng chọn ít nhất 1 bản ghi để áp dụng");
-    }
-  });
+    e.
+  })
 }
 
 // end form change multi

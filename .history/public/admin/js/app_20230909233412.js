@@ -118,7 +118,7 @@ if (formChangeMulti) {
         arrIds.push(id);
       });
       inputIds.value = arrIds.join(",");
-      formChangeMulti.submit();
+      formChangeMulti.submit()
     } else {
       alert("vui lòng chọn ít nhất 1 bản ghi để áp dụng");
     }

@@ -75,9 +75,8 @@ module.exports.changeMulti = async (req, res) => {
   const type = req.body.type;
 
   // converse các id về 1 mảng
-  const ids = req.body.ids.split(",");
-  console.log(type);
-  console.log(ids);
+  const ids = req.body.ids.split(", ");
+
   switch (type) {
     case "active":
       await Product.updateMany({ _id: { $in: ids } }, { status: "active" });

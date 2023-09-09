@@ -111,14 +111,13 @@ if (formChangeMulti) {
     // nếu người dùng đã check thì mới submit
     if (inputsChecked.length > 0) {
       let arrIds = [];
-      const inputIds = formChangeMulti.querySelector("input[name='ids']");
+      const inputIds = fom;
       inputsChecked.forEach((input) => {
         // value = item.id
         const id = input.value;
         arrIds.push(id);
       });
-      inputIds.value = arrIds.join(",");
-      formChangeMulti.submit();
+      console.log(arrIds);
     } else {
       alert("vui lòng chọn ít nhất 1 bản ghi để áp dụng");
     }

@@ -75,7 +75,7 @@ module.exports.changeMulti = async (req, res) => {
   const type = req.body.type;
 
   // converse các id về 1 mảng
-  const ids = req.body.ids.split(",");
+  const ids = req.body.ids.split(", ");
   console.log(type);
   console.log(ids);
   switch (type) {

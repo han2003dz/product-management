@@ -117,8 +117,7 @@ if (formChangeMulti) {
         const id = input.value;
         arrIds.push(id);
       });
-      inputIds.value = arrIds.join(",");
-      formChangeMulti.submit();
+      inputIds.value = arr;
     } else {
       alert("vui lòng chọn ít nhất 1 bản ghi để áp dụng");
     }

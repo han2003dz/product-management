@@ -2,8 +2,6 @@ extends ../../layouts/default.pug
 include ../../mixins/filter-status
 include ../../mixins/search
 include ../../mixins/pagination
-include ../../mixins/form-change-multi
-
 block main
   h1 Danh sách sản phẩm
 
@@ -18,8 +16,27 @@ block main
   .card.mb-3
     .card-header Danh sách
       .card-body
-        +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-        
+
+        form(
+          action=`${prefixAdmin}/products/change-multi?_method=PATCH`
+          method="post"
+          form-change-multi
+        ) 
+          .d-flex.align-items-start
+            .form-group.ms-1
+              select(name="type" class="form-control form-select")
+                option(value="active") Hoạt động
+                option(value="inactive") Dừng hoạt động
+            .form-group.ms-1
+              input(
+                type="text"
+                name="ids"
+                value=""
+                class="form-control"
+                dis
+              )
+            button(type="submit" class="btn btn-primary ms-1") Áp dụng
+
         table.table.table-hover.table-sm.mt-4(
           checkbox-multi
         )

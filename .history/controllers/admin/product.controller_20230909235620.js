@@ -72,19 +72,19 @@ module.exports.changeStatus = async (req, res) => {
 // [PATCH]/admin/product/change-multi
 
 module.exports.changeMulti = async (req, res) => {
-  const type = req.body.type;
+  const status = req.body.type;
+  const ids = req.body.ids;
 
   // converse các id về 1 mảng
-  const ids = req.body.ids.split(",");
-  console.log(type);
-  console.log(ids);
+  const arrIds = ids.split(", ");
+
   switch (type) {
     case "active":
-      await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
+      await Product.updateMany({ _id: { $in: arrIds } }, { status: "active" }, {multi: true});
       break;
     case "inactive":
-      await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
       break;
+
     default:
       break;
   }
