@@ -96,11 +96,7 @@ module.exports.deleteItem = async (req, res) => {
 
   // await Product.deleteOne({ _id: id }); xóa vĩnh viễn
   // xóa mềm
-  await Product.updateOne(
-    { _id: id },
-    { deleted: true },
-    { deletedAt: new Date() }
-  );
+  await Product.updateOne({ _id: id }, { deleted: true }, {deletedAt: });
 
   res.redirect("back");
 };

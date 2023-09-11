@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
   title: String,
-  description: String,
+  description: String,  
   price: Number,
   discountPercentage: Number,
   stock: Number,
@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
   status: String,
   position: Number,
   deleted: Boolean,
-  deletedAt: Date,
+  de
 });
 
 const Product = mongoose.model("Products", productSchema, "products");
