@@ -82,17 +82,11 @@ module.exports.changeMulti = async (req, res) => {
   switch (type) {
     case "active":
       await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
-      req.flash(
-        "success",
-        `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`
-      );
+      req.flash("success", `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`);
       break;
     case "inactive":
       await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
-      req.flash(
-        "success",
-        `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`
-      );
+      req.flash("success", `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`);
       break;
     case "deleted-all":
       await Product.updateMany(
@@ -110,14 +104,12 @@ module.exports.changeMulti = async (req, res) => {
         position = parseInt(position);
         await Product.updateOne({ _id: id }, { position: position });
       }
-      req.flash(
-        "success",
-        `Đã thay đổi thành công vị trí của ${ids.length} sản phẩm!`
-      );
       break;
     default:
       break;
   }
+
+  req.flash("success", `Đã xóa thành công sản phẩm!`);
   res.redirect("back");
 };
 
@@ -133,7 +125,6 @@ module.exports.deleteItem = async (req, res) => {
       deletedAt: new Date(),
     }
   );
-  req.flash("success", `Đã xóa thành công sản phẩm!`);
 
   res.redirect("back");
 };

@@ -118,6 +118,8 @@ module.exports.changeMulti = async (req, res) => {
     default:
       break;
   }
+
+  req.flash("success", `Đã xóa thành công sản phẩm!`);
   res.redirect("back");
 };
 
@@ -133,7 +135,6 @@ module.exports.deleteItem = async (req, res) => {
       deletedAt: new Date(),
     }
   );
-  req.flash("success", `Đã xóa thành công sản phẩm!`);
 
   res.redirect("back");
 };
