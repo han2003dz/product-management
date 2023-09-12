@@ -14,8 +14,6 @@ const systemConfig = require("./config/system");
 // import route and port
 const route = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
-
-// variable env
 const port = process.env.PORT;
 const parser = process.env.PARSER;
 
@@ -26,7 +24,7 @@ app.set("views", "./views");
 app.set("view engine", "pug");
 
 // flash
-app.use(cookieParser(`${parser}`));
+app.use(cookieParser(``));
 app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 

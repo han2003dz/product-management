@@ -15,7 +15,7 @@ const systemConfig = require("./config/system");
 const route = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
 
-// variable env
+// 
 const port = process.env.PORT;
 const parser = process.env.PARSER;
 
