@@ -1,0 +1,7 @@
+mixin alert-success(time)
+  if messages.success
+    .message.info.w-25
+      .alert.alert-success.fs-5(
+        show-alert 
+        data-time=time
+      ) #{messages.success} <span close-alert>x</span>

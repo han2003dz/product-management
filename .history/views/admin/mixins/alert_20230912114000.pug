@@ -1,0 +1,7 @@
+mixin alert-success(time)
+  if messages.success
+    .message.info.col-4
+      .alert.alert-success.fs-6(
+        show-alert 
+        data-time=time
+      ) #{messages.success} <i class="bi bi-x-circle"></i>
