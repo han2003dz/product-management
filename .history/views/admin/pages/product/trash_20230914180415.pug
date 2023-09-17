@@ -1,0 +1,103 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status
+include ../../mixins/search
+include ../../mixins/pagination
+include ../../mixins/form-change-multi
+include ../../mixins/alert
+block main
+  +alert-success(5000)
+  .card-title.mb-1
+    h1.ms-2 Danh sách sản phẩm đã xóa
+
+  .card.mb-3
+    .card-header Bộ lọc và Tìm kiếm
+  .card.mb-3
+    .card-header Danh sách
+      .card-body
+        table.table.table-hover.table-sm.mt-4(
+            checkbox-multi
+          )
+            thead
+              tr
+                th 
+                  input(class="form-check-input" type="checkbox" name="checkAll")
+                th STT
+                th Hình ảnh
+                th Tiêu đề
+                th Giá
+                th Vị trí
+                th Trạng thái
+                th Hành động
+
+            tbody
+              each item, index in products
+                tr 
+                  td 
+                    input(
+                      class="form-check-input"
+                      type="checkbox"
+                      name="id"
+                      value=item.id
+                    )
+                    
+                  td #{index + 1}
+
+                  td
+                    img(
+                      class="img-products"
+                      src=item.thumbnail
+                      alt=item.title
+                      width="100px"
+                      height="70px"
+                    )
+                  td #{item.title}
+
+                  td #{item.price}$
+
+                  td
+                    input(
+                      type="number"
+                      value=item.position
+                      style="width: 60px"
+                      min="1"
+                      name="position"
+                    )
+
+                  td
+                    if(item.status == "active")
+                      a(
+                        href="javascript:;" 
+                        class="badge bg-success fs-6"
+                        data-status=item.status
+                        data-id=item.id
+                        link-change-status
+                        ) Hoạt động 
+                    else
+                      a(
+                        href="javascript:;" 
+                        class="badge bg-danger fs-6"
+                        data-status=item.status
+                        data-id=item.id
+                        link-change-status
+                        ) Dừng hoạt động
+                  td
+                    button(
+                      class="btn btn-danger btn-sm ms-1" 
+                      data-id=item.id
+                      button-delete
+                    ) Khôi phục
+  form(
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`${prefixAdmin}/products/change-status`
+  ) 
+
+  form(
+    action=""
+    method="POST"
+    id="form-delete-item"
+    data-path=`${prefixAdmin}/products/delete`
+  ) 
+
+  script(src="/admin/js/products.js") 

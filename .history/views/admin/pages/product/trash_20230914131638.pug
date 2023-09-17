@@ -1,0 +1,21 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status
+include ../../mixins/search
+include ../../mixins/pagination
+include ../../mixins/form-change-multi
+include ../../mixins/alert
+block main
+  +alert-success(5000)
+    .card-title.mb-1
+      h1.ms-2 Danh sách sản phẩm
+
+    .card.mb-3
+      .card-header Bộ lọc và Tìm kiếm
+      .card-body
+        .row
+          .col-6
+            +filter(filterStatus)
+          .col-6
+            +search(keyword)
+    .card.mb-3
+      .card-header Danh sách
