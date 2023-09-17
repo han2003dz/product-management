@@ -21,17 +21,24 @@ module.exports.index = async (req, res) => {
     find.title = objectSearch.regex;
   }
 
-  const countProducts = await Product.count(find);
   // pagination
-
   let objectPagination = paginationHelper(
     {
       currentPage: 1,
-      limitItemProduct: 4,
+      limitItems: 4,
     },
     req.query,
     countProducts
   );
+
+  objectPagination.skip =
+    (objectPagination.currentPage - 1) * objectPagination.limitItemProduct;
+  const countProducts = await Product.count(find);
+  const totalPages = Math.ceil(
+    countProducts / objectPagination.limitItemProduct
+  );
+
+  objectPagination.totalPages = totalPages;
   // end pagination
 
   const products = await Product.find(find)
@@ -154,7 +161,6 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
-  console.log(req.file);
 
   req.body.thumbnail = `/uploads/${req.file.filename}`;
 

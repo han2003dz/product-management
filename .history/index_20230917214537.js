@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const multer = require("multer");
+
+const storageMulter = require("../../helpers/storageMulter");
+const upload = multer({ storage: storageMulter() });
 
 //import config
 const database = require("./config/database");

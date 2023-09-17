@@ -6,7 +6,7 @@ block main
     action=`${prefixAdmin}/products/create`
     id="form-create-product"
     method="POST"
-    enctype="multipart/form-data"
+     enctype="multipart/form-data"
   )
     .form-group.mb-2 
       label(for="title") Tiêu đề
@@ -58,12 +58,16 @@ block main
       label(for="thumbnail") Ảnh
       input.form-control(
         type="file"
-        class="form-control-file"
         id="thumbnail"
         name="thumbnail"
-        accept="image/*"
+        class="form-control-file"
+        accept="images/*"
+        upload-image-input
       )
-      
+      img.image-preview(
+        src=""
+        upload-image-preview
+      )
 
     .form-group.mb-2 
       label(for="position") Vị trí

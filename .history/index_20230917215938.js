@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const multer = require("multer");
 
 //import config
 const database = require("./config/database");

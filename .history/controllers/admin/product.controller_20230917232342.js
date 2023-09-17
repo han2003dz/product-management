@@ -1,7 +1,6 @@
 const Product = require("../../models/product.model");
 const filterStatusHelpers = require("../../helpers/filterStatus");
 const searchHelpers = require("../../helpers/search");
-const paginationHelper = require("../../helpers/pagination");
 const systemConfig = require("../../config/system");
 // [GET]/admin/product
 module.exports.index = async (req, res) => {
@@ -21,17 +20,24 @@ module.exports.index = async (req, res) => {
     find.title = objectSearch.regex;
   }
 
-  const countProducts = await Product.count(find);
   // pagination
+  let objectPagination = {
+    currentPage: 1,
+    limitItemProduct: 4,
+  };
 
-  let objectPagination = paginationHelper(
-    {
-      currentPage: 1,
-      limitItemProduct: 4,
-    },
-    req.query,
-    countProducts
+  if (req.query.page) {
+    objectPagination.currentPage = parseInt(req.query.page);
+  }
+
+  objectPagination.skip =
+    (objectPagination.currentPage - 1) * objectPagination.limitItemProduct;
+  const countProducts = await Product.count(find);
+  const totalPages = Math.ceil(
+    countProducts / objectPagination.limitItemProduct
   );
+
+  objectPagination.totalPages = totalPages;
   // end pagination
 
   const products = await Product.find(find)
@@ -153,8 +159,7 @@ module.exports.createPost = async (req, res) => {
     req.body.position = countProducts + 1;
   } else {
     req.body.position = parseInt(req.body.position);
-  }
-  console.log(req.file);
+  
 
   req.body.thumbnail = `/uploads/${req.file.filename}`;
 

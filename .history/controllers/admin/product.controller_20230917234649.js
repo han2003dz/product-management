@@ -23,11 +23,19 @@ module.exports.index = async (req, res) => {
 
   const countProducts = await Product.count(find);
   // pagination
+  
 
+  objectPagination.skip =
+    (objectPagination.currentPage - 1) * objectPagination.limitItemProduct;
+  const totalPages = Math.ceil(
+    countProducts / objectPagination.limitItemProduct
+  );
+
+  objectPagination.totalPages = totalPages;
   let objectPagination = paginationHelper(
     {
       currentPage: 1,
-      limitItemProduct: 4,
+      limitItems: 4,
     },
     req.query,
     countProducts
@@ -154,7 +162,6 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
-  console.log(req.file);
 
   req.body.thumbnail = `/uploads/${req.file.filename}`;
 

@@ -154,7 +154,7 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
-  console.log(req.file);
+  console.log(req.)
 
   req.body.thumbnail = `/uploads/${req.file.filename}`;
 

@@ -27,7 +27,7 @@ module.exports.index = async (req, res) => {
   let objectPagination = paginationHelper(
     {
       currentPage: 1,
-      limitItemProduct: 4,
+      limitItems: 4,
     },
     req.query,
     countProducts
@@ -154,7 +154,6 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
-  console.log(req.file);
 
   req.body.thumbnail = `/uploads/${req.file.filename}`;
 
