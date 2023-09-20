@@ -199,16 +199,16 @@ if (sort) {
     const stringSort = `${sortKey}-${sortValue}`;
     const optionSelected = sortSelect.querySelector(
       `option[value='${stringSort}']`
-    );
-    optionSelected.selected = true;
+      );
+      optionSelected.selected = true;
+      sortClear.addEventListener("click", () => {
+        url.searchParams.delete("sortKey");
+        url.searchParams.delete("sortValue");
+    
+        window.location.href = url.href;
+      });
   }
 
   // nút xóa sắp xếp
-  sortClear.addEventListener("click", () => {
-    url.searchParams.delete("sortKey");
-    url.searchParams.delete("sortValue");
-
-    window.location.href = url.href;
-  });
 }
 // End Button sort

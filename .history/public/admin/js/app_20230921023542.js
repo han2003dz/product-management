@@ -203,8 +203,8 @@ if (sort) {
     optionSelected.selected = true;
   }
 
-  // nút xóa sắp xếp
-  sortClear.addEventListener("click", () => {
+   // Xóa sắp xếp
+   sortClear.addEventListener("click", () => {
     url.searchParams.delete("sortKey");
     url.searchParams.delete("sortValue");
 

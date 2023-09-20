@@ -192,6 +192,12 @@ if (sort) {
   });
   // vì mỗi lần chuyển trạng thái web sẽ load lại và set lại về mặc định
   // cần thêm thuộc tính selected=true cho option hiện tại
+  sortClear.addEventListener("click", () => {
+    url.searchParams.delete("sortKey");
+    url.searchParams.delete("sortValue");
+
+    window.location.href = url.href;
+  });
   const sortKey = url.searchParams.get("sortKey");
   const sortValue = url.searchParams.get("sortValue");
   // nếu web đã trả về url có sortKey và sortValue thì:
@@ -199,16 +205,10 @@ if (sort) {
     const stringSort = `${sortKey}-${sortValue}`;
     const optionSelected = sortSelect.querySelector(
       `option[value='${stringSort}']`
-    );
-    optionSelected.selected = true;
-  }
-
-  // nút xóa sắp xếp
-  sortClear.addEventListener("click", () => {
-    url.searchParams.delete("sortKey");
-    url.searchParams.delete("sortValue");
-
-    window.location.href = url.href;
-  });
+      );
+      optionSelected.selected = true;
+    }
+    
+    // nút xóa sắp xếp
 }
 // End Button sort
