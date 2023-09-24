@@ -4,7 +4,7 @@ if (linkChangeStatus.length > 0) {
   // lấy form, lấy data-path
   const formChangeStatus = document.querySelector("#form-change-status");
   const path = formChangeStatus.getAttribute("data-path");
-  console.log(path);
+  console.log(path)
 
   linkChangeStatus.forEach((item) => {
     item.addEventListener("click", () => {

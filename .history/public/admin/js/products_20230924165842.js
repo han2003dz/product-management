@@ -3,7 +3,7 @@ const linkChangeStatus = document.querySelectorAll("[link-change-status]");
 if (linkChangeStatus.length > 0) {
   // lấy form, lấy data-path
   const formChangeStatus = document.querySelector("#form-change-status");
-  const path = formChangeStatus.getAttribute("data-path");
+  const path = formChangeStatus.get("data-path");
   console.log(path);
 
   linkChangeStatus.forEach((item) => {

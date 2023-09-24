@@ -37,17 +37,3 @@ module.exports.createPost = async (req, res) => {
   res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 };
 
-// [PATCH]/admin/products-category/change-status/status/id
-module.exports.changeStatus = async (req, res) => {
-  /**
-   *  params chứa các router động truyền lên từ client
-   * ví dụ như status, id
-   */
-  const status = req.params.status;
-  const id = req.params.id;
-
-  await productCategory.updateOne({ _id: id }, { status: status });
-
-  // req.flash("success", "Cập nhật trạng thái thành công!");
-  res.redirect("back");
-};
