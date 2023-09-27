@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 const slug = require("mongoose-slug-updater");
 const mongooseDelete = require("mongoose-delete");
 
-
 const productSchema = new mongoose.Schema(
   {
     title: String,
-    product_category_id: {
-      type: String,
-      default: "",
-    },
+    product_category_id:
     description: String,
     price: Number,
     discountPercentage: Number,

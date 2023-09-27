@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const slug = require("mongoose-slug-updater");
 const mongooseDelete = require("mongoose-delete");
-
+zzzz
 
 const productSchema = new mongoose.Schema(
   {

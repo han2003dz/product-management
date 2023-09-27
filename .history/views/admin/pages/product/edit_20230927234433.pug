@@ -1,6 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
-include ../../mixins/select-tree.pug
+
 block main
   +alert-success(5000)
   +alert-error(5000)
@@ -20,16 +20,7 @@ block main
         required
         value=product.title
       )
-    div(class="form-group")
-      label(for="product_category_id") Danh mục
-      select(
-        name="product_category_id"
-        id="product_category_id"
-        class="form-control"
-      )
-        option(value="") -- Chọn danh mục --
-        if(category)
-          +select-tree(category, 1, product.product_category_id)
+    
     .form-group.mb-2
       label(for="desc") Mô tả
       textarea.form-control.textarea-mce(
@@ -118,8 +109,5 @@ block main
       label(for="statusInActive" class="form-check-label") Dừng hoạt động 
     .form-group.mb-2 
       button.btn.btn-primary(type="submit") Cập nhật
-
-  script(src= "/tinymce/tinymce.min.js")
-  script(src= "/admin/js/tinymce-config.js")
   script(src="/admin/js/products.js")
   //- public-js

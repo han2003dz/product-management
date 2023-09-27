@@ -203,7 +203,7 @@ module.exports.edit = async (req, res) => {
     res.render("admin/pages/product/edit", {
       pageTitle: "Chỉnh sửa sản phẩm",
       product: product,
-      category: newCategory,
+      category
     });
   } catch (error) {
     req.flash("error", "không tồn tại sản phẩm này");
