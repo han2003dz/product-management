@@ -1,0 +1,4 @@
+mixin select-tree(items, level = 1)
+  each item in items
+    - const prefix = Array(level + 1).join("--");
+    option(value = item.id) #{prefix}#

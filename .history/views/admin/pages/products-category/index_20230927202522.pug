@@ -1,0 +1,67 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status
+include ../../mixins/search
+include ../../mixins/form-change-multi
+include ../../mixins/alert
+include ../../mixins/trash
+include ../../mixins/sort
+include ../../mixins/pagination
+block main
+  .m-2
+    +alert-success(5000)
+    +alert-error(5000)
+    .card-title.mb-1
+      h1.ms-2 Danh mục sản phẩm
+    
+    .card.mb-3
+      .card-header Bộ lọc và Tìm kiếm
+      .card-body
+        .row
+          .col-6
+            +filter(filterStatus)
+          .col-6
+            +search(keyword)
+
+    .card.mb-3
+      .card-header Sắp xếp
+      .card-body
+        .row.p-0
+          .col-3
+            +sort-category()
+
+    .card.mb-3
+      .card-header Danh sách
+        .card-body
+          .row
+            .col-10
+              
+            .col-2
+              a.btn.btn-outline-success(href=`${prefixAdmin}/products-category/create`) + Thêm mới
+          
+          table.table.table-hover.table-sm.mt-4(
+            checkbox-multi
+          )
+            thead
+              tr
+                th 
+                  input(class="form-check-input" type="checkbox" name="checkAll")
+                th STT
+                th Hình ảnh
+                th Tiêu đề
+                th Vị trí
+                th Trạng thái
+                th Hành động
+                th Chi tiết
+            tbody
+              +table-tree()
+    +pagination(pagination)
+  form(
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`${prefixAdmin}/products-category/change-status`
+  ) 
+  script(src="/admin/js/products.js") 
+    
+
+

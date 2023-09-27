@@ -1,0 +1,95 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block main
+  +alert-success(5000)
+  +alert-error(5000)
+  h1(class="mb-4 ms-2") Chỉnh sửa danh mục sản phẩm
+  form.m-2(
+    action=`${prefixAdmin}/products-category/edit/${category.id}?_method=PATCH`
+    id="form-edit-product"
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    .form-group.mb-2 
+      label(for="title") Tiêu đề
+      input.form-control(
+        type="text"
+        id="title"
+        name="title"
+        required
+        value=category.title
+      )
+    .form-group.mb-2 
+      label(for="parent_id") Danh mục cha
+      select.form-control.form-select(
+        type="text"
+        id="parent_id"
+        name="parent_id"
+      )
+        option(value="" disabled="disabled" selected="selected") Chọn danh mục cha
+        if(records)
+          +select-tree(records, find.parent_id)
+    .form-group.mb-2
+      label(for="desc") Mô tả
+      textarea.form-control.textarea-mce(
+        id="desc"
+        name="description"
+        rows="5"
+        value=category.description
+      ) #{category.description}
+
+
+    .form-group.mb-2(upload-image)
+      label(for="thumbnail") Ảnh
+      input.form-control(
+        type="file"
+        class="form-control-file"
+        id="thumbnail"
+        name="thumbnail"
+        accept="image/*"
+        upload-image-input
+      )
+      img(
+        src=category.thumbnail
+        upload-image-preview
+        class="image-preview"
+      )
+      
+
+    .form-group.mb-2 
+      label(for="position") Vị trí
+      input.form-control(
+        type="number"
+        id="position"
+        name="position"
+        placeholder="Tự động tăng"
+        value=category.position
+        min="1"
+      )
+    .form-group.form-check.form-check-inline.mb-2
+      input(
+        type="radio"
+        class="form-check-input"
+        id="statusActive"
+        name="status"
+        value="active"
+        checked=(category.status == "active" ? true : false)
+      )
+      label(for="statusActive" class="form-check-label") Hoạt động
+    .form-group.form-check.form-check-inline.mb-2
+      input(
+        type="radio"
+        class="form-check-input"
+        id="statusInActive"
+        name="status"
+        value="inactive"
+        checked=(category.status == "active" ? false : true)
+      )
+      label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+    .form-group.mb-2 
+      button.btn.btn-primary(type="submit") Cập nhật
+  script(src= "/tinymce/tinymce.min.js")
+  script(src= "/admin/js/tinymce-config.js")
+  script(src="/admin/js/products.js")
+  //- public-js
