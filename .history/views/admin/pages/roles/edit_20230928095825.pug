@@ -1,0 +1,10 @@
+extends ../../layouts/default.pug
+block main
+  .m-2
+    h1 Chỉnh sửa nhóm quyền
+    form.m-2(
+    action=`${prefixAdmin}/roles/edit/${category.id}?_method=PATCH`
+    id="form-edit-roles"
+    method="POST"
+    enctype="multipart/form-data"
+  )
