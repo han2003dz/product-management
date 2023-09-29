@@ -84,19 +84,4 @@ module.exports.detail = async (req, res) => {
   });
 };
 
-module.exports.deleteItem = async (req, res) => {
-  try {
-    const id = req.params.id;
-    await Role.updateOne(
-      { _id: id },
-      {
-        deleted: true,
-        deletedAt: new Date(),
-      }
-    );
-    req.flash("success", "Đã xóa thành công!");
-    res.redirect("back");
-  } catch (error) {
-    req.flash("error", "Xóa thất bại!");
-  }
-};
+module.exports.delete

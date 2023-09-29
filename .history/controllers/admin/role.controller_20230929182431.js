@@ -94,9 +94,7 @@ module.exports.deleteItem = async (req, res) => {
         deletedAt: new Date(),
       }
     );
-    req.flash("success", "Đã xóa thành công!");
-    res.redirect("back");
-  } catch (error) {
-    req.flash("error", "Xóa thất bại!");
-  }
+    req
+    req.redirect("back");
+  } catch (error) {}
 };

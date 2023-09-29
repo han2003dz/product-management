@@ -14,5 +14,5 @@ router.patch("/edit/:id", controller.editPatch);
 
 router.get("/detail/:id", controller.detail);
 
-router.delete("/delete/:id", controller.deleteItem);
+router.delete("/deleteItem/:id", controller.deleteItem)
 module.exports = router;
