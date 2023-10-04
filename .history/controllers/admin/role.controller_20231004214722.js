@@ -116,7 +116,7 @@ module.exports.permissions = async (req, res) => {
   console.log(records);
   res.render("admin/pages/roles/permissions.pug", {
     pageTitle: "Trang phân quyền",
-    records: records,
+    data: records,
   });
 };
 

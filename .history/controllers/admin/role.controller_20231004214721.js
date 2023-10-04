@@ -113,10 +113,10 @@ module.exports.permissions = async (req, res) => {
     deleted: false,
   };
   const records = await Role.find(find);
-  console.log(records);
+  console.log(data);
   res.render("admin/pages/roles/permissions.pug", {
     pageTitle: "Trang phân quyền",
-    records: records,
+    data: data,
   });
 };
 
