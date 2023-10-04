@@ -1,0 +1,9 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert
+  if(data)
+    h1 Trang phân quyền
+  else
+    p Chưa có quyền nào được tạo

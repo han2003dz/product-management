@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-success(3000)
+  .m-2
+    h1 Trang phân quyền
+    if(data)
+      .text-right
+        button(
+          type="submit"
+          class="btn btn-primary mb-3"
+          button-submit
+        ) Cập nhật
+      table.table.table-hover.table-sm(table-permissions)
+        thead
+          tr
+            th Tính năng
+            each item in data
+              th(class="text-center") #{item.title}
+        tbody
+          tr(data-name="id")
+            td
+            each item in data
+              td.text-center
+                input(type="text" value=item.id)
+          tr
+            td(colspan="4")
+              b Danh mục sản phẩm
+          tr(data-name="product-category_view")
+            td Xem
+            each item in data
+              td.text-center
+                input(type="checkbox")
+          tr(data-name="product-category_create")
+            td Thêm mới
+            each item in data
+            td 
+          tr
+          tr
+    else
+      p Chưa có quyền nào được tạo

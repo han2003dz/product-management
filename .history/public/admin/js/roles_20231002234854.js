@@ -1,0 +1,1 @@
+const tablePermissions = doc

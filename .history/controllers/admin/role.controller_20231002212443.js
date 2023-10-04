@@ -1,0 +1,123 @@
+const Role = require("../../models/roles.model");
+const systemConfig = require("../../config/system");
+
+//[GET] admin/roles
+module.exports.index = async (req, res) => {
+  let find = {
+    deleted: false,
+  };
+
+  const records = await Role.find(find);
+
+  res.render(`admin/pages/roles/index`, {
+    pageTitle: "Nhóm quyền",
+    records: records,
+  });
+};
+
+//[GET] admin/roles/create
+module.exports.create = async (req, res) => {
+  res.render(`admin/pages/roles/create`, {
+    pageTitle: "Thêm mới nhóm quyền",
+  });
+};
+
+//[POST] admin/roles/createPost
+module.exports.createPost = async (req, res) => {
+  try {
+    const records = new Role(req.body);
+
+    await records.save();
+
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  } catch (error) {
+    req.flash("error", "Không thể thêm nhóm quyền này");
+    res.redirect("back");
+  }
+};
+
+// [GET] /admin/roles/edit/:id
+module.exports.edit = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    let find = {
+      _id: id,
+      deleted: false,
+    };
+
+    const data = await Role.findOne(find);
+
+    res.render("admin/pages/roles/edit", {
+      pageTitle: "Sửa nhóm quyền",
+      data: data,
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  }
+};
+
+// [PATCH] /admin/roles/edit/:id
+module.exports.editPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await Role.updateOne({ _id: id }, req.body);
+
+    console.log(req.body);
+
+    req.flash("success", "Cập nhật nhóm quyền thành công!");
+  } catch (error) {
+    req.flash("error", "Cập nhật nhóm quyền thất bại!");
+  }
+
+  res.redirect("back");
+};
+
+// [GET] /admin/roles/detail/:id
+module.exports.detail = async (req, res) => {
+  const id = req.params.id;
+  let find = {
+    _id: id,
+    deleted: false,
+  };
+  const data = await Role.findOne(find);
+  console.log(data);
+  res.render("admin/pages/roles/detail.pug", {
+    pageTitle: "Xem chi tiết nhóm quyền",
+    data: data,
+  });
+};
+
+module.exports.deleteItem = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Role.updateOne(
+      { _id: id },
+      {
+        deleted: true,
+        deletedAt: new Date(),
+      }
+    );
+    req.flash("success", "Đã xóa thành công!");
+    res.redirect("back");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại!");
+    res.redirect("back");
+  }
+};
+
+// [GET] /admin/roles/detail/:id
+module.exports.permissions = async (req, res) => {
+  const id = req.params.id;
+  let find = {
+    _id: id,
+    deleted: false,
+  };
+  const data = await Role.find(find);
+  console.log(data);
+  res.render("admin/pages/roles/detail.pug", {
+    pageTitle: "Trang phân quyền",
+    data: data,
+  });
+};

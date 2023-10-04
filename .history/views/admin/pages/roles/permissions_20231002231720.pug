@@ -1,0 +1,14 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-success(3000)
+    h1 Trang phân quyền
+  if(data)
+    .text-right
+      button(
+        type="submit"
+        class
+      )
+  else
+    p Chưa có quyền nào được tạo
