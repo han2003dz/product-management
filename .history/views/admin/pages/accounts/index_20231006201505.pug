@@ -1,0 +1,31 @@
+extends ../../layouts/default.pug
+
+block main
+  .m-2
+    .card-title.mb-1
+      h1.ms-2 Danh sách sản phẩm
+    .card.mb-3
+      .card-header Danh sách
+        .card-body
+          .row
+            .col-10
+              //- +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+            .col-2
+              a.btn.btn-outline-success(href=`${prefixAdmin}/accounts/create`) + Thêm mới
+          
+          table.table.table-hover.table-sm.mt-4(
+            checkbox-multi
+          )
+            thead
+              tr
+                th 
+                  input(class="form-check-input" type="checkbox" name="checkAll")
+                th STT
+                th Avatar
+                th Họ tên
+                th Phân quyền
+                th Email
+                th Trạng thái
+                th Hành động
+        
+
