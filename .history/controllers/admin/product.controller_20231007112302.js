@@ -152,10 +152,7 @@ module.exports.deleteItem = async (req, res) => {
     { _id: id },
     {
       deleted: true,
-      deletedBy: {
-        account_id: res.locals.user.id,
-        deletedAt: new Date(),
-      },
+      deletedAt: new Date(),
     }
   );
   req.flash("success", `Đã xóa thành công sản phẩm!`);
