@@ -65,14 +65,15 @@ module.exports.index = async (req, res) => {
     }
     // Lấy ra thông tin người cập nhật gần nhất
     const updatedBy = product.updatedBy.slice(-1)[0];
-    if (updatedBy) {
+    if(updatedBy) {
       const userUpdated = await Account.findOne({
-        _id: updatedBy.account_id,
+        _id: updatedBy.account_id
       });
 
       updatedBy.accountFullName = userUpdated.fullName;
-    }
   }
+
+
 
   res.render("admin/pages/product/index", {
     pageTitle: "Danh sách sản phẩm",

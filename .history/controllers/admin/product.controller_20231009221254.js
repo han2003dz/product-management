@@ -55,22 +55,12 @@ module.exports.index = async (req, res) => {
     .skip(objectPagination.skip);
   // desc - giảm dần, asc-tăng dần
 
-  // lấy ra thông tin người tạo
   for (const product of products) {
     const user = await Account.findOne({
       _id: product.createdBy.account_id,
     });
     if (user) {
       product.accountFullName = user.fullName;
-    }
-    // Lấy ra thông tin người cập nhật gần nhất
-    const updatedBy = product.updatedBy.slice(-1)[0];
-    if (updatedBy) {
-      const userUpdated = await Account.findOne({
-        _id: updatedBy.account_id,
-      });
-
-      updatedBy.accountFullName = userUpdated.fullName;
     }
   }
 
@@ -104,12 +94,6 @@ module.exports.changeMulti = async (req, res) => {
 
   // converse các id về 1 mảng
   const ids = req.body.ids.split(",");
-
-  const updatedBy = {
-    account_id: res.locals.user.id,
-    updatedAt: new Date(),
-  };
-
   switch (type) {
     case "active":
       await Product.updateMany(
@@ -122,10 +106,7 @@ module.exports.changeMulti = async (req, res) => {
       );
       break;
     case "inactive":
-      await Product.updateMany(
-        { _id: { $in: ids } },
-        { status: "inactive", $push: { updatedBy: updatedBy } }
-      );
+      await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
       req.flash(
         "success",
         `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`

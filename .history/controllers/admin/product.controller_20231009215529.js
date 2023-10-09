@@ -55,22 +55,12 @@ module.exports.index = async (req, res) => {
     .skip(objectPagination.skip);
   // desc - giảm dần, asc-tăng dần
 
-  // lấy ra thông tin người tạo
   for (const product of products) {
     const user = await Account.findOne({
       _id: product.createdBy.account_id,
     });
     if (user) {
       product.accountFullName = user.fullName;
-    }
-    // Lấy ra thông tin người cập nhật gần nhất
-    const updatedBy = product.updatedBy.slice(-1)[0];
-    if (updatedBy) {
-      const userUpdated = await Account.findOne({
-        _id: updatedBy.account_id,
-      });
-
-      updatedBy.accountFullName = userUpdated.fullName;
     }
   }
 
@@ -104,28 +94,16 @@ module.exports.changeMulti = async (req, res) => {
 
   // converse các id về 1 mảng
   const ids = req.body.ids.split(",");
-
-  const updatedBy = {
-    account_id: res.locals.user.id,
-    updatedAt: new Date(),
-  };
-
   switch (type) {
     case "active":
-      await Product.updateMany(
-        { _id: { $in: ids } },
-        { status: "active", $push: { updatedBy: updatedBy } }
-      );
+      await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
       req.flash(
         "success",
         `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`
       );
       break;
     case "inactive":
-      await Product.updateMany(
-        { _id: { $in: ids } },
-        { status: "inactive", $push: { updatedBy: updatedBy } }
-      );
+      await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
       req.flash(
         "success",
         `cập nhật thành công trạng thái của ${ids.length} sản phẩm!`
@@ -254,11 +232,14 @@ module.exports.edit = async (req, res) => {
 
 // [Patch] /admin/products/edit/:id
 module.exports.editPatch = async (req, res) => {
+  console.log(req.file);
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
   req.body.position = parseInt(req.body.position);
-
+  if (req.file) {
+    req.body.thumbnail = "/uploads/${req.file.filename}";
+  }
   try {
     const updatedBy = {
       account_id: res.locals.user.id,
@@ -268,9 +249,9 @@ module.exports.editPatch = async (req, res) => {
       {
         _id: req.params.id,
       },
-      { ...req.body, $push: { updatedBy: updatedBy } }
+      { ...req.body }
     );
-    console.log(req.body);
+    console.log({...req.b})
     req.flash("success", "Cập nhật thành công");
   } catch (error) {
     req.flash("error", "Cập nhật thất bại");
