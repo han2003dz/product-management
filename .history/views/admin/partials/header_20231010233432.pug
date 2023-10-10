@@ -1,0 +1,23 @@
+include ../mixins/dropdown.pug
+
+header.header
+  .container-fluid
+    .row.align-items-center.bg-light
+      .col-12
+        .d-flex.justify-content-between.align-items-center
+          .inner-logo
+            a.ms-2(href="/admin/dashboard") ADMIN
+          div(class="text-right d-flex justify-content-center align-items-center")
+            div(class="user mx-3")
+              a(
+                class="nav-link nav-profile d-flex align-items-center pe-0" 
+                href=`${prefixAdmin/my-account}`
+              )
+                img(src=`${user.avatar}` alt="Profile" class="rounded-circle avatar-user")
+                span(class="d-none d-md-block ps-2 text-light") #{user.fullName}
+
+            div(class="logout")
+              a(
+                href=`${prefixAdmin}/auth/logout`
+                class="btn btn-danger btn-sm"
+              ) Đăng xuất

@@ -1,0 +1,14 @@
+header.header
+  .container-fluid
+    .row.align-items-center
+      .col-12
+        .d-flex.justify-content-between
+          .inner-logo
+            a.ms-2(href="/admin/dashboard") ADMIN
+          div(class="text-right")
+            div(class="user")
+              
+            a(
+              href=`${prefixAdmin}/auth/logout`
+              class="btn btn-danger btn-sm"
+            ) Đăng xuất
