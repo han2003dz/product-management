@@ -22,16 +22,7 @@ module.exports.editPatch = async (req, res) => {
     deleted: false,
   });
 
-  if (emailExit) {
-    req.flash("error", `Email ${req.body.email} đã tồn tại`);
-  } else {
-    if (req.body.password) {
-      req.body.password = md5(req.body.password);
-    } else {
-      delete req.body.password;
-    }
-    await Account.updateOne({ _id }, req.body);
-    req.flash("success", "Cập nhật thành công!");
+  if(emailExit){
+    req.flash("error", "Email đã tồn tại")
   }
-  res.redirect("back");
 };

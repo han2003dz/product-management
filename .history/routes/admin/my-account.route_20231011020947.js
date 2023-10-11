@@ -11,6 +11,4 @@ const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware");
 router.get("/", controller.index);
 
 router.get("/edit", controller.edit);
-
-router.patch("/edit", uploadCloud.upload, controller.editPatch);
 module.exports = router;

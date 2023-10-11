@@ -39,7 +39,6 @@ block main
           class="form-control"
           id="password"
           name="password"
-          required
           value=user.password
         )
       div(class="form-group")
@@ -51,9 +50,12 @@ block main
           name="phone"
           value=user.phone
         )
-      .form-group.mb-2(upload-image)
-        label(for="avatar") Ảnh
-        input.form-control(
+      div(
+        class="form-group"
+        upload-image
+      )
+        label(for="avatar") Avatar
+        input(
           type="file"
           class="form-control-file"
           id="avatar"
@@ -63,8 +65,8 @@ block main
         )
         img(
           src=user.avatar
-          upload-image-preview
           class="image-preview"
+          upload-image-preview
         )
       div(class="form-group")
         button(

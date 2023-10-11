@@ -12,5 +12,5 @@ router.get("/", controller.index);
 
 router.get("/edit", controller.edit);
 
-router.patch("/edit", uploadCloud.upload, controller.editPatch);
+router.patch("/edit", uploadCloud, controller.editPatch);
 module.exports = router;

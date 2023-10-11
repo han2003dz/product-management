@@ -52,20 +52,20 @@ block main
           value=user.phone
         )
       .form-group.mb-2(upload-image)
-        label(for="avatar") Ảnh
-        input.form-control(
-          type="file"
-          class="form-control-file"
-          id="avatar"
-          name="avatar"
-          accept="image/*"
-          upload-image-input
-        )
-        img(
-          src=user.avatar
-          upload-image-preview
-          class="image-preview"
-        )
+            label(for="avatar") Ảnh
+            input.form-control(
+              type="file"
+              class="form-control-file"
+              id="avatar"
+              name="avatar"
+              accept="image/*"
+              upload-image-input
+            )
+            img(
+              src=""
+              upload-image-preview
+              class="image-preview"
+            )
       div(class="form-group")
         button(
           type="submit"

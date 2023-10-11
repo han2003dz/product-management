@@ -27,11 +27,8 @@ module.exports.editPatch = async (req, res) => {
   } else {
     if (req.body.password) {
       req.body.password = md5(req.body.password);
-    } else {
-      delete req.body.password;
+    }else{
+      delete req.body.
     }
-    await Account.updateOne({ _id }, req.body);
-    req.flash("success", "Cập nhật thành công!");
   }
-  res.redirect("back");
 };

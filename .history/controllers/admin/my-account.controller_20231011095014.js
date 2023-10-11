@@ -30,8 +30,7 @@ module.exports.editPatch = async (req, res) => {
     } else {
       delete req.body.password;
     }
-    await Account.updateOne({ _id }, req.body);
-    req.flash("success", "Cập nhật thành công!");
   }
-  res.redirect("back");
+
+  await Account.updateOne({ _id }, req.body);
 };
