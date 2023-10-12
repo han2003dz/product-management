@@ -45,12 +45,9 @@ module.exports.category = async (req, res) => {
     deleted: false,
   });
 
-  // lấy ra 1 list category con trong category cha
   const listSubCategory = await productsCategoryHelper.getSubCategory(
     category.id
   );
-  // lấy ra id của từng con
-  const listSubCategoryId = listSubCategory.map((item) => item.id);
 
   const products = await Product.find({
     // lấy ra id trong mảng id
@@ -58,7 +55,7 @@ module.exports.category = async (req, res) => {
     deleted: false,
   });
 
-  const newProducts = productsHelper.priceNewProducts(products);
+  const listSubCategoryId = listSubCategory.map((item) => item.id);
 
   res.render("client/pages/products/index", {
     pageTitle: category.title,

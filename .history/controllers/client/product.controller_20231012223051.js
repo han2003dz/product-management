@@ -49,7 +49,6 @@ module.exports.category = async (req, res) => {
   const listSubCategory = await productsCategoryHelper.getSubCategory(
     category.id
   );
-  // lấy ra id của từng con
   const listSubCategoryId = listSubCategory.map((item) => item.id);
 
   const products = await Product.find({

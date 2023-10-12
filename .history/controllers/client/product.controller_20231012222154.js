@@ -1,7 +1,7 @@
 const Product = require("../../models/product.model");
 const productsHelper = require("../../helpers/products");
 const ProductCategory = require("../../models/product-category.model");
-const productsCategoryHelper = require("../../helpers/products-category");
+
 // [GET/client/product]
 module.exports.index = async (req, res) => {
   const products = await Product.find({
@@ -17,7 +17,7 @@ module.exports.index = async (req, res) => {
     products: newProducts,
   });
 };
-// [GET] /products/:slug
+// [GET] /products/detail/:slug
 module.exports.detail = async (req, res) => {
   try {
     const find = {
@@ -35,33 +35,4 @@ module.exports.detail = async (req, res) => {
   } catch (error) {
     res.redirect(`/products`);
   }
-};
-
-// [GET]/products/:slugCategory
-module.exports.category = async (req, res) => {
-  const category = await ProductCategory.findOne({
-    slug: req.params.slugCategory,
-    status: "active",
-    deleted: false,
-  });
-
-  // lấy ra 1 list category con trong category cha
-  const listSubCategory = await productsCategoryHelper.getSubCategory(
-    category.id
-  );
-  // lấy ra id của từng con
-  const listSubCategoryId = listSubCategory.map((item) => item.id);
-
-  const products = await Product.find({
-    // lấy ra id trong mảng id
-    product_category_id: { $in: [category.id, ...listSubCategoryId] },
-    deleted: false,
-  });
-
-  const newProducts = productsHelper.priceNewProducts(products);
-
-  res.render("client/pages/products/index", {
-    pageTitle: category.title,
-    products: newProducts,
-  });
 };

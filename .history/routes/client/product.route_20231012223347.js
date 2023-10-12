@@ -7,4 +7,6 @@ router.get("/", controller.index);
 
 router.get("/:slugCategory", controller.category);
 
+router.get("/:slug")
+
 module.exports = router;
