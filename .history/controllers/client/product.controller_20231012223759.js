@@ -17,31 +17,20 @@ module.exports.index = async (req, res) => {
     products: newProducts,
   });
 };
-// [GET] /detail/:slugCategory
+// [GET] /detail/:slug
 module.exports.detail = async (req, res) => {
   try {
     const find = {
       deleted: false,
-      slug: req.params.slugCategory,
+      slug: req.params.slug,
       status: "active",
     };
 
-    const product = await Product.findOne(find);
-    console.log(product);
-    if (product.product_category_id) {
-      const category = await ProductCategory.findOne({
-        _id: product.product_category_id,
-        status: "active",
-        deleted: false,
-      });
+    const products = await Product.findOne(find);
 
-      product.category = category;
-    }
-
-    product.priceNew = productsHelper.priceNewProduct(product);
     res.render("client/pages/products/detail", {
-      pageTitle: product.title,
-      product: product,
+      pageTitle: products.title,
+      products: products,
     });
   } catch (error) {
     res.redirect(`/products`);

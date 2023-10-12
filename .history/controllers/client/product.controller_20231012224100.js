@@ -35,10 +35,8 @@ module.exports.detail = async (req, res) => {
         deleted: false,
       });
 
-      product.category = category;
+      product.category = ca
     }
-
-    product.priceNew = productsHelper.priceNewProduct(product);
     res.render("client/pages/products/detail", {
       pageTitle: product.title,
       product: product,

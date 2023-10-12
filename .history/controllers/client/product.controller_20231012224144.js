@@ -38,7 +38,7 @@ module.exports.detail = async (req, res) => {
       product.category = category;
     }
 
-    product.priceNew = productsHelper.priceNewProduct(product);
+    product.priceNew = productsHelper.priceNewProducts(product);
     res.render("client/pages/products/detail", {
       pageTitle: product.title,
       product: product,
