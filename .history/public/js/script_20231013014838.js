@@ -11,11 +11,11 @@ console.log(maxAttributeValue);
 let counterValue = parseInt(inputElement.value);
 buttonPlus.addEventListener("click", () => {
   if (counterValue < maxAttributeValue) counterValue++;
-  else alert("Vượt quá số lượng mặt hàng còn !");
   inputElement.value = counterValue;
+  alert("Vượt quá số lượng mặt hàng còn !")
 });
 
 buttonMinus.addEventListener("click", () => {
-  if (counterValue > minAttributeValue) counterValue--;
+  if (counterValue > 1) counterValue--;
   inputElement.value = counterValue;
 });

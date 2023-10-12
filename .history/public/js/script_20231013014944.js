@@ -11,8 +11,9 @@ console.log(maxAttributeValue);
 let counterValue = parseInt(inputElement.value);
 buttonPlus.addEventListener("click", () => {
   if (counterValue < maxAttributeValue) counterValue++;
-  else alert("Vượt quá số lượng mặt hàng còn !");
+  else
   inputElement.value = counterValue;
+  alert("Vượt quá số lượng mặt hàng còn !")
 });
 
 buttonMinus.addEventListener("click", () => {

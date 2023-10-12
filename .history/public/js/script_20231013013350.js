@@ -2,20 +2,16 @@ const buttonPlus = document.querySelector(".btn--card__plus");
 const buttonMinus = document.querySelector(".btn--card__minus");
 const inputElement = document.querySelector("#amount");
 
-const minAttributeValue = parseInt(inputElement.getAttribute("min"));
-
-const maxAttributeValue = parseInt(inputElement.getAttribute("max"));
-
-console.log(maxAttributeValue);
+const minAttributeValue = inputElement.getAttribute("min");
+console.log(min)
 
 let counterValue = parseInt(inputElement.value);
 buttonPlus.addEventListener("click", () => {
-  if (counterValue < maxAttributeValue) counterValue++;
-  else alert("Vượt quá số lượng mặt hàng còn !");
+  counterValue++;
   inputElement.value = counterValue;
 });
 
 buttonMinus.addEventListener("click", () => {
-  if (counterValue > minAttributeValue) counterValue--;
+  if (counterValue > 1) counterValue--;
   inputElement.value = counterValue;
 });

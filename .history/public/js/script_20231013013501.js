@@ -4,18 +4,17 @@ const inputElement = document.querySelector("#amount");
 
 const minAttributeValue = parseInt(inputElement.getAttribute("min"));
 
-const maxAttributeValue = parseInt(inputElement.getAttribute("max"));
+const maxAttributeValue = parseInt(inputElement.getAttribute("min"));
 
-console.log(maxAttributeValue);
+console.log(minAttributeValue);
 
 let counterValue = parseInt(inputElement.value);
 buttonPlus.addEventListener("click", () => {
-  if (counterValue < maxAttributeValue) counterValue++;
-  else alert("Vượt quá số lượng mặt hàng còn !");
+  counterValue++;
   inputElement.value = counterValue;
 });
 
 buttonMinus.addEventListener("click", () => {
-  if (counterValue > minAttributeValue) counterValue--;
+  if (counterValue > 1) counterValue--;
   inputElement.value = counterValue;
 });
