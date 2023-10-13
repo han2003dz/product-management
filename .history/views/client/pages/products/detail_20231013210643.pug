@@ -30,19 +30,11 @@ block main
 
           span Số lượng mua
 
-          //- +box-cart()
+          //- +box-card()
           form(
             action=`/cart/add/${product.id}`
             method="POST"
           )
-            input(
-              class="form-control mb-2"
-              type="number"
-              name="quantity"
-              value="1"
-              min="1"
-              max=product.stock
-            )
             button(
               type="submit"
               class="btn btn-success btn-block"
