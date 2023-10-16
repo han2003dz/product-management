@@ -43,7 +43,11 @@ module.exports.addPost = async (req, res) => {
     const productId = req.params.productId;
     const quantity = parseInt(req.body.quantity);
     const cartId = req.cookies.cartId;
-    
+
+    // console.log(productId);
+    // console.log(quantity);
+    // console.log(cartId);
+
     const cart = await Cart.findOne({
       _id: cartId,
     });

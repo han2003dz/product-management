@@ -1,12 +1,10 @@
 const Cart = require("../../models/cart.model");
 const Product = require("../../models/product.model");
-
 const productsHelper = require("../../helpers/products");
 
-// [GET] /cart/
+// [GET] /cart
 module.exports.index = async (req, res) => {
   const cartId = req.cookies.cartId;
-
   const cart = await Cart.findOne({
     _id: cartId,
   });
@@ -16,17 +14,18 @@ module.exports.index = async (req, res) => {
       const productId = item.product_id;
       const productInfo = await Product.findOne({
         _id: productId,
+        deleted: false,
       }).select("title thumbnail slug price discountPercentage");
 
       productInfo.priceNew = productsHelper.priceNewProduct(productInfo);
 
       item.productInfo = productInfo;
 
-      item.totalPrice = productInfo.priceNew * item.quantity;
+      item.totalPrice = item.productInfo * item.quantity;
     }
   }
 
-  cart.totalPrice = cart.products.reduce(
+  cart.totalPriceAll = cart.products.reduce(
     (sum, item) => sum + item.totalPrice,
     0
   );
@@ -43,7 +42,11 @@ module.exports.addPost = async (req, res) => {
     const productId = req.params.productId;
     const quantity = parseInt(req.body.quantity);
     const cartId = req.cookies.cartId;
-    
+
+    // console.log(productId);
+    // console.log(quantity);
+    // console.log(cartId);
+
     const cart = await Cart.findOne({
       _id: cartId,
     });

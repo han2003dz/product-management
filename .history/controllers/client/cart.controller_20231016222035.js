@@ -26,10 +26,9 @@ module.exports.index = async (req, res) => {
     }
   }
 
-  cart.totalPrice = cart.products.reduce(
-    (sum, item) => sum + item.totalPrice,
-    0
-  );
+  cart.totalPrice = cart.products.reduce((sum, item) => sum + item.totalPrice, 0);
+
+  console.log(cart);
 
   res.render("client/pages/cart/index", {
     pageTitle: "Giỏ hàng",
@@ -43,7 +42,11 @@ module.exports.addPost = async (req, res) => {
     const productId = req.params.productId;
     const quantity = parseInt(req.body.quantity);
     const cartId = req.cookies.cartId;
-    
+
+    // console.log(productId);
+    // console.log(quantity);
+    // console.log(cartId);
+
     const cart = await Cart.findOne({
       _id: cartId,
     });
