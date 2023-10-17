@@ -43,7 +43,7 @@ module.exports.addPost = async (req, res) => {
     const productId = req.params.productId;
     const quantity = parseInt(req.body.quantity);
     const cartId = req.cookies.cartId;
-
+    
     const cart = await Cart.findOne({
       _id: cartId,
     });
@@ -109,26 +109,4 @@ module.exports.delete = async (req, res) => {
   res.redirect("back");
 };
 
-// [GET] /cart/update/:productId/:quantity
-// [GET] /cart/update/:productId/:quantity
-module.exports.update = async (req, res) => {
-  const cartId = req.cookies.cartId;
-  const productId = req.params.productId;
-  const quantity = req.params.quantity;
-
-  await Cart.updateOne(
-    {
-      _id: cartId,
-      "products.product_id": productId,
-    },
-    {
-      $set: {
-        "products.$.quantity": quantity,
-      },
-    }
-  );
-
-  req.flash("success", "Cập nhật số lượng thành công!");
-
-  res.redirect("back");
-};
+// 

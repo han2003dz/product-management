@@ -131,4 +131,4 @@ module.exports.update = async (req, res) => {
   req.flash("success", "Cập nhật số lượng thành công!");
 
   res.redirect("back");
-};
+}

@@ -110,11 +110,10 @@ module.exports.delete = async (req, res) => {
 };
 
 // [GET] /cart/update/:productId/:quantity
-// [GET] /cart/update/:productId/:quantity
 module.exports.update = async (req, res) => {
-  const cartId = req.cookies.cartId;
   const productId = req.params.productId;
   const quantity = req.params.quantity;
+  const cartId = req.cookies.cartId;
 
   await Cart.updateOne(
     {
@@ -127,8 +126,6 @@ module.exports.update = async (req, res) => {
       },
     }
   );
-
-  req.flash("success", "Cập nhật số lượng thành công!");
-
-  res.redirect("back");
+  req.flash("success", "Cập nhật số lượng thàng công");
+  res.redirect("");
 };
