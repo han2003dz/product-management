@@ -17,5 +17,5 @@ module.exports = (app) => {
   app.use("/search", searchRouter);
   app.use("/cart", cartRouter);
   app.use("/checkout", checkoutRouter);
-  app.use("/user", userRouter);
+  app.use("/", userRouter);
 };

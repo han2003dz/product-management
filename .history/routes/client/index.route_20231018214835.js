@@ -12,10 +12,9 @@ module.exports = (app) => {
   app.use(categoryMiddleware.category);
   app.use(cartMiddleware.cartId);
 
-  app.use("/", homeRouter);
+  userRouter
   app.use("/products", productRouter);
   app.use("/search", searchRouter);
   app.use("/cart", cartRouter);
   app.use("/checkout", checkoutRouter);
-  app.use("/user", userRouter);
 };

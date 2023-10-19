@@ -114,6 +114,5 @@ module.exports.success = async (req, res) => {
 
   res.render("client/pages/checkout/success", {
     pageTitle: "Đặt hàng thành công",
-    order: order,
   });
 };

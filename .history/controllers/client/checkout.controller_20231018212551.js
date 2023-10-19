@@ -107,13 +107,9 @@ module.exports.success = async (req, res) => {
     product.totalPrice = product.priceNew * product.quantity;
   }
 
-  order.totalPrice = order.products.reduce(
-    (sum, item) => sum + item.totalPrice,
-    0
-  );
+  order.
 
   res.render("client/pages/checkout/success", {
     pageTitle: "Đặt hàng thành công",
-    order: order,
   });
 };

@@ -100,20 +100,9 @@ module.exports.success = async (req, res) => {
     const productInfo = await Product.findOne({
       _id: product.product_id,
     }).select("thumbnail title");
-
-    product.productInfo = productInfo;
-
-    product.priceNew = productsHelper.priceNewProduct(product);
-    product.totalPrice = product.priceNew * product.quantity;
   }
-
-  order.totalPrice = order.products.reduce(
-    (sum, item) => sum + item.totalPrice,
-    0
-  );
 
   res.render("client/pages/checkout/success", {
     pageTitle: "Đặt hàng thành công",
-    order: order,
   });
 };
