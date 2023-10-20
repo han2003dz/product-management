@@ -1,0 +1,13 @@
+.input__box {
+  position: relative;
+}
+
+.input__box input{
+  padding: 20px 45px;
+
+}
+
+.input__box i {
+  position: absolute;
+  padding: 5px;
+}
