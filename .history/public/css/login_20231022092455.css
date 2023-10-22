@@ -44,7 +44,6 @@ body {
   padding: 5px;
 }
 
-.input__box .eye-pass {
-  padding-right: 10px;
-  right: 0;
+.input__box eye-pass{
+  
 }
