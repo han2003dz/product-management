@@ -1,6 +1,7 @@
 const md5 = require("md5");
 const User = require("../../models/user.model");
 const sendMailHelper = require("../../helpers/sendMail");
+const Cart = require("../../models/cart.model");
 
 const ForgotPassword = require("../../models/forgot-password.model");
 const generateHelper = require("../../helpers/generate");
@@ -68,7 +69,9 @@ module.exports.loginPost = async (req, res) => {
     return;
   }
 
-  const cart = Cart.findOne({
+  const cart = await Cart.findOne({
+    _id:
+  },{
     user_id: user.id,
   });
 
@@ -85,7 +88,6 @@ module.exports.loginPost = async (req, res) => {
     );
   }
   res.cookie("tokenUser", user.tokenUser);
-
   res.redirect("/");
 };
 
@@ -196,6 +198,7 @@ module.exports.resetPasswordPost = async (req, res) => {
 
 // [GET] /user/info
 module.exports.info = async (req, res) => {
+  
   res.render("client/pages/user/info", {
     pageTitle: "Trang cá nhân",
   });

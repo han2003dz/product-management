@@ -38,6 +38,6 @@ router.post(
   controller.resetPasswordPost
 );
 
-router.get("/info", authMiddleware.requireAuth, controller.info);
+
 
 module.exports = router;

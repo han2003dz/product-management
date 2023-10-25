@@ -1,6 +1,7 @@
 const md5 = require("md5");
 const User = require("../../models/user.model");
 const sendMailHelper = require("../../helpers/sendMail");
+const Cart = require("../../models/cart.model");
 
 const ForgotPassword = require("../../models/forgot-password.model");
 const generateHelper = require("../../helpers/generate");
@@ -68,9 +69,14 @@ module.exports.loginPost = async (req, res) => {
     return;
   }
 
-  const cart = Cart.findOne({
-    user_id: user.id,
-  });
+  const cart = await Cart.findOne(
+    {
+      _id: req.cookies.cartId,
+    },
+    {
+      user_id: user.id,
+    }
+  );
 
   if (cart) {
     res.cookie("cartId", cart.id);
@@ -85,7 +91,6 @@ module.exports.loginPost = async (req, res) => {
     );
   }
   res.cookie("tokenUser", user.tokenUser);
-
   res.redirect("/");
 };
 

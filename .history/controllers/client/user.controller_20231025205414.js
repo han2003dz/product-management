@@ -1,6 +1,7 @@
 const md5 = require("md5");
 const User = require("../../models/user.model");
 const sendMailHelper = require("../../helpers/sendMail");
+const Cart = require("../../models/cart.model");
 
 const ForgotPassword = require("../../models/forgot-password.model");
 const generateHelper = require("../../helpers/generate");
@@ -85,7 +86,6 @@ module.exports.loginPost = async (req, res) => {
     );
   }
   res.cookie("tokenUser", user.tokenUser);
-
   res.redirect("/");
 };
 

@@ -68,7 +68,7 @@ module.exports.loginPost = async (req, res) => {
     return;
   }
 
-  const cart = Cart.findOne({
+  const cart = await Cart.findOne({
     user_id: user.id,
   });
 
@@ -85,7 +85,6 @@ module.exports.loginPost = async (req, res) => {
     );
   }
   res.cookie("tokenUser", user.tokenUser);
-
   res.redirect("/");
 };
 
@@ -194,9 +193,4 @@ module.exports.resetPasswordPost = async (req, res) => {
   res.redirect("/");
 };
 
-// [GET] /user/info
-module.exports.info = async (req, res) => {
-  res.render("client/pages/user/info", {
-    pageTitle: "Trang cá nhân",
-  });
-};
+// [GET]
