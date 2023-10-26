@@ -1,7 +1,6 @@
 const eyePass = document.querySelector(".eye-pass");
 const password = document.querySelector("#password");
 
-console.log(eyePass);
 
 if (eyePass) {
   eyePass.addEventListener("click", () => {
