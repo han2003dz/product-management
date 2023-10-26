@@ -87,6 +87,7 @@ module.exports.loginPost = async (req, res) => {
     );
   }
 
+  console.log(cart);
 
   res.cookie("tokenUser", user.tokenUser);
 

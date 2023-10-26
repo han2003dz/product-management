@@ -49,47 +49,43 @@ module.exports.loginPost = async (req, res) => {
 
   const user = await User.findOne({
     email: email,
-    deleted: false,
+    deleted: false
   });
 
-  if (!user) {
+  if(!user) {
     req.flash("error", "Email không tồn tại!");
     res.redirect("back");
     return;
   }
 
-  if (md5(password) !== user.password) {
+  if(md5(password) !== user.password) {
     req.flash("error", "Sai mật khẩu!");
     res.redirect("back");
     return;
   }
 
-  if (user.status === "inactive") {
+  if(user.status === "inactive") {
     req.flash("error", "Tài khoản đang bị khóa!");
     res.redirect("back");
     return;
   }
 
   const cart = await Cart.findOne({
-    user_id: user.id,
+    user_id: user.id
   });
 
-  if (cart) {
+  if(cart) {
     res.cookie("cartId", cart.id);
   } else {
-    await Cart.updateOne(
-      {
-        _id: req.cookies.cartId,
-      },
-      {
-        user_id: user.id,
-      }
-    );
+    await Cart.updateOne({
+      _id: req.cookies.cartId
+    }, {
+      user_id: user.id
+    });
   }
 
-
   res.cookie("tokenUser", user.tokenUser);
-
+  
   res.redirect("/");
 };
 

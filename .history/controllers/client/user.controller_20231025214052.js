@@ -44,53 +44,53 @@ module.exports.login = async (req, res) => {
 
 // [POST] /user/loginPost
 module.exports.loginPost = async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = await User.findOne({
+      email: email,
+      deleted: false,
+    });
+    if (!user) {
+      req.flash("error", "sai địa chỉ email!");
+      res.redirect("back");
+      return;
+    }
 
-  const user = await User.findOne({
-    email: email,
-    deleted: false,
-  });
+    if (md5(password) !== user.password) {
+      req.flash("error", "sai mật khẩu!");
+      res.redirect("back");
+      return;
+    }
 
-  if (!user) {
-    req.flash("error", "Email không tồn tại!");
-    res.redirect("back");
-    return;
+    if (user.status === "inactive") {
+      req.flash("error", "Tài khoản hiện đang bị khóa !");
+      res.redirect("back");
+      return;
+    }
+
+    const cart = await Cart.findOne({
+      user_id: user.id,
+    });
+
+    if (cart) {
+      res.cookie("cartId", cart.id);
+    } else {
+      await Cart.updateOne(
+        {
+          _id: req.cookies.cartId,
+        },
+        {
+          user_id: user.id,
+        }
+      );
+    }
+    res.cookie("tokenUser", user.tokenUser);
+
+    res.redirect("/");
+  } catch (error) {
+    console.log("Lỗi");
   }
-
-  if (md5(password) !== user.password) {
-    req.flash("error", "Sai mật khẩu!");
-    res.redirect("back");
-    return;
-  }
-
-  if (user.status === "inactive") {
-    req.flash("error", "Tài khoản đang bị khóa!");
-    res.redirect("back");
-    return;
-  }
-
-  const cart = await Cart.findOne({
-    user_id: user.id,
-  });
-
-  if (cart) {
-    res.cookie("cartId", cart.id);
-  } else {
-    await Cart.updateOne(
-      {
-        _id: req.cookies.cartId,
-      },
-      {
-        user_id: user.id,
-      }
-    );
-  }
-
-
-  res.cookie("tokenUser", user.tokenUser);
-
-  res.redirect("/");
 };
 
 // [GET] user/logout

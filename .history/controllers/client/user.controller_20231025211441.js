@@ -42,30 +42,28 @@ module.exports.login = async (req, res) => {
   });
 };
 
-// [POST] /user/loginPost
+// [POST] /user/login
 module.exports.loginPost = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
   const user = await User.findOne({
     email: email,
     deleted: false,
   });
-
   if (!user) {
-    req.flash("error", "Email không tồn tại!");
+    req.flash("error", "sai địa chỉ email!");
     res.redirect("back");
     return;
   }
 
   if (md5(password) !== user.password) {
-    req.flash("error", "Sai mật khẩu!");
+    req.flash("error", "sai mật khẩu!");
     res.redirect("back");
     return;
   }
 
   if (user.status === "inactive") {
-    req.flash("error", "Tài khoản đang bị khóa!");
+    req.flash("error", "Tài khoản hiện đang bị khóa !");
     res.redirect("back");
     return;
   }
@@ -86,8 +84,6 @@ module.exports.loginPost = async (req, res) => {
       }
     );
   }
-
-
   res.cookie("tokenUser", user.tokenUser);
 
   res.redirect("/");
