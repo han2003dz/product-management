@@ -1,0 +1,13 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+  .m-2
+    +alert-success(5000)
+    +alert-error(5000)
+    h1 Cài đặt chung
+    form(
+      action=`${prefixAdmin}/settings/general?_method=PATCH`
+      method="POST"
+      
+    )

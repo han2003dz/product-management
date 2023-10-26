@@ -1,0 +1,1 @@
+const SettingGeneral = require("../../models/")
