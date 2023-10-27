@@ -1,0 +1,12 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main 
+  .m-2
+    +alert-success(5000)
+    +alert-error(5000)
+    h1 Chỉnh sửa trang 404
+    form(
+      action=`${prefixAdmin}/settings/general?_method=PATCH`
+      method="POST"
+      enctype="multipart/form-data"
+    )
