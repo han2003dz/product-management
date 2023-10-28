@@ -80,8 +80,3 @@ if (emojiPicker) {
 // - end insert icon vào ô nhập
 //End show icon chat
 
-// SERVER_RETURN_TYPING
-socket.on("SERVER_RETURN_TYPING", (data) => {
-  console.log(data);
-});
-// END SERVER_RETURN_TYPING

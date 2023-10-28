@@ -23,12 +23,8 @@ module.exports.index = async (req, res) => {
 
     // Typing
     socket.on("CLIENT_SEND_TYPING", async (type) => {
-      socket.broadcast.emit("SERVER_RETURN_TYPING", {
-        userId: userId,
-        fullName: fullName,
-        type: type,
-      });
-    });
+      socket.broadcast.emit("SERVER_RETURN")
+    })
   });
 
   // lấy data từ database

@@ -81,7 +81,5 @@ if (emojiPicker) {
 //End show icon chat
 
 // SERVER_RETURN_TYPING
-socket.on("SERVER_RETURN_TYPING", (data) => {
-  console.log(data);
-});
+socket.on("SERVER_RETURN_TYPING", )
 // END SERVER_RETURN_TYPING

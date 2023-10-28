@@ -26,9 +26,9 @@ module.exports.index = async (req, res) => {
       socket.broadcast.emit("SERVER_RETURN_TYPING", {
         userId: userId,
         fullName: fullName,
-        type: type,
-      });
-    });
+        
+      })
+    })
   });
 
   // lấy data từ database

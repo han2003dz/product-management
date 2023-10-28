@@ -82,6 +82,6 @@ if (emojiPicker) {
 
 // SERVER_RETURN_TYPING
 socket.on("SERVER_RETURN_TYPING", (data) => {
-  console.log(data);
-});
+  
+})
 // END SERVER_RETURN_TYPING
