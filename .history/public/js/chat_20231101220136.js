@@ -123,7 +123,6 @@ if (elementListTyping) {
           <span></span>
         </div>`;
         elementListTyping.appendChild(boxTyping);
-        bodyChat.scrollTop = bodyChat.scrollHeight;
       } else {
         const boxTypingRemove = elementListTyping.querySelector(
           `[user-id="${data.userID}]`

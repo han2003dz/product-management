@@ -36,7 +36,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     <div class="inner-content">${data.content}</div>
   `;
 
-  body.insertBefore(div, boxTyping);
+  body.appendChild(div);
 
   body.scrollTop = body.scrollHeight;
 });
@@ -84,10 +84,8 @@ if (emojiPicker) {
   emojiPicker.addEventListener("emoji-click", (e) => {
     const icon = e.detail.unicode;
     inputChat.value = inputChat.value + icon;
-    const end = inputChat.value.length;
-    inputChat.setSelectionRange(end, end);
-    inputChat.focus();
-
+    const end = inputChat.value.length
+    inputChat.setSele
     showTyping();
   });
 
@@ -110,7 +108,6 @@ if (elementListTyping) {
         `[user-id="${data.userID}]`
       );
       if (!existTyping) {
-        const bodyChat = document.querySelector(".chat .inner-body");
         const boxTyping = document.createElement("div");
         boxTyping.classList.add("box-typing");
         boxTyping.setAttribute("user-id", data.userId);
@@ -123,7 +120,6 @@ if (elementListTyping) {
           <span></span>
         </div>`;
         elementListTyping.appendChild(boxTyping);
-        bodyChat.scrollTop = bodyChat.scrollHeight;
       } else {
         const boxTypingRemove = elementListTyping.querySelector(
           `[user-id="${data.userID}]`

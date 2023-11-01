@@ -8,8 +8,6 @@ if (formSendData) {
     if (content) {
       socket.emit("CLIENT_SEND_MESSAGE", content);
       e.target.elements.content.value = "";
-      // khi người kia gửi tin nhắn thì sẽ mất typing
-      socket.emit("CLIENT_SEND_TYPING", "hidden");
     }
   });
 }
@@ -20,7 +18,6 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
   const myId = document.querySelector("[my-id]").getAttribute("my-id");
   const body = document.querySelector(".chat .inner-body");
 
-  const boxTyping = document.querySelector(".chat .inner-list-typing");
   const div = document.createElement("div");
   let htmlFullName = "";
 
@@ -36,7 +33,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     <div class="inner-content">${data.content}</div>
   `;
 
-  body.insertBefore(div, boxTyping);
+  body.appendChild(div);
 
   body.scrollTop = body.scrollHeight;
 });
@@ -62,18 +59,6 @@ if (buttonIcon) {
 }
 // - end show popper
 
-var timeOut;
-const showTyping = () => {
-  socket.emit("CLIENT_SEND_TYPING", "show");
-
-  clearTimeOut(timeOut);
-
-  // sau 3 giây nếu người kia không nhập thì sẽ tắt typing
-  timeOut = setTimeout(() => {
-    socket.emit("CLIENT_SEND_TYPING", "hidden");
-  }, 3000);
-};
-
 // - insert icon vào ô nhập
 const emojiPicker = document.querySelector("emoji-picker");
 if (emojiPicker) {
@@ -84,17 +69,17 @@ if (emojiPicker) {
   emojiPicker.addEventListener("emoji-click", (e) => {
     const icon = e.detail.unicode;
     inputChat.value = inputChat.value + icon;
-    const end = inputChat.value.length;
-    inputChat.setSelectionRange(end, end);
-    inputChat.focus();
-
-    showTyping();
   });
 
   // Input Keyup
-
+  var timeOut;
   inputChat.addEventListener("keyup", () => {
-    showTyping();
+    socket.emit("CLIENT_SEND_TYPING", "show");
+
+    // sau 3 giây nếu người kia không nhập thì sẽ tắt typing
+    timesetTimeout(() => {
+      socket.emit("CLIENT_SEND_TYPING", "hidden");
+    }, 5000);
   });
   // End Input Keyup
 }
@@ -110,7 +95,6 @@ if (elementListTyping) {
         `[user-id="${data.userID}]`
       );
       if (!existTyping) {
-        const bodyChat = document.querySelector(".chat .inner-body");
         const boxTyping = document.createElement("div");
         boxTyping.classList.add("box-typing");
         boxTyping.setAttribute("user-id", data.userId);
@@ -123,13 +107,11 @@ if (elementListTyping) {
           <span></span>
         </div>`;
         elementListTyping.appendChild(boxTyping);
-        bodyChat.scrollTop = bodyChat.scrollHeight;
       } else {
         const boxTypingRemove = elementListTyping.querySelector(
           `[user-id="${data.userID}]`
         );
         if (boxTypingRemove) {
-          elementListTyping.removeChild(boxTypingRemove);
         }
       }
     }
