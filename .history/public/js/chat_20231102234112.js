@@ -76,7 +76,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 
   body.scrollTop = body.scrollHeight;
 
-  const gallery = new Viewer(div);
+  const gallery = new 
 });
 // END SERVER_RETURN_MESSAGE
 
@@ -110,6 +110,7 @@ const showTyping = () => {
     socket.emit("CLIENT_SEND_TYPING", "hidden");
   }, 3000);
 };
+
 // END SHOW TYPING
 
 // -- insert icon (nhập icon)
@@ -174,10 +175,3 @@ if (elementListTyping) {
   });
 }
 // END SERVER_RETURN_TYPING
-
-// Preview Full Image
-const bodyChatPreviewImage = document.querySelector(".chat .inner-body");
-if (bodyChatPreviewImage) {
-  const gallery = new Viewer(bodyChatPreviewImage);
-}
-// end Preview Full Image

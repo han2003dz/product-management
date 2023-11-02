@@ -175,9 +175,4 @@ if (elementListTyping) {
 }
 // END SERVER_RETURN_TYPING
 
-// Preview Full Image
-const bodyChatPreviewImage = document.querySelector(".chat .inner-body");
-if (bodyChatPreviewImage) {
-  const gallery = new Viewer(bodyChatPreviewImage);
-}
-// end Preview Full Image
+// 

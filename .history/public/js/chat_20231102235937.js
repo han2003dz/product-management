@@ -177,7 +177,5 @@ if (elementListTyping) {
 
 // Preview Full Image
 const bodyChatPreviewImage = document.querySelector(".chat .inner-body");
-if (bodyChatPreviewImage) {
-  const gallery = new Viewer(bodyChatPreviewImage);
-}
+if(bodyChatPreviewImage)
 // end Preview Full Image
