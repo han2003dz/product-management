@@ -4,7 +4,7 @@ const Chat = require("../../models/chat.model");
 const chatSocket = require("../../sockets/client/chat.socket");
 
 module.exports.index = async (req, res) => {
-  chatSocket(res);
+  chá
 
   // lấy ra đoạn chat chưa bị xóa
   const chats = await Chat.find({
