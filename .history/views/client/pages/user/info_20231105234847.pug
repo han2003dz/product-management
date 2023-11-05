@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+  .container.my-3
+    .row
+      .col-3.d-flex.flex-column.nav-info-user
+        .profile
+          .avatar
+            img(class="img-fluid rounded-circle" src="/images/avatar.jpg")
+          h1 #{user.fullName}
+        nav#navbar.nav-menu.navbar
+          ul
+            li
+              a.nav-link.scrollto.active(href='/user/info')
+                i(class="fa-solid fa-user")
+                span Thông tin tài khoản
+            li
+              a.nav-link.scrollto(href='/user/shopping-history')
+                i(class="fa-solid fa-clock-rotate-left")
+                span Lịch sử mua hàng
+            li
+              a.nav-link.scrollto(href='/')
+                i(class="fa-solid fa-magnifying-glass-dollar")
+                span Tra cứu hóa đơn
+            li
+              a.nav-link.scrollto(href='#portfolio')
+                i class="fa-solid fa-pen-to-square"></i>
+                span Chỉnh sửa thông tin
+            li
+              a.nav-link.scrollto(href="/user/logout")
+                i.bx.bx-envelope
+                span Đăng xuất
+      .col-9
+        +box-head("Thông tin tài khoản")

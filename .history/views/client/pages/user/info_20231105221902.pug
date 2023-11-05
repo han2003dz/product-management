@@ -1,0 +1,12 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+  .container.my-3
+    .row
+      .col-3.d-flex.flex-column
+        .profile
+          img(class="img-fluid rounded-circle" src="#{user.avatar}")
+          h1 #{user.fullName}
+      .col-9
+        +box-head("Thông tin tài khoản")

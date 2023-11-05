@@ -1,0 +1,11 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+  .container.my-3
+    .row
+      .col-3.d-flex.flex-column.nav-info-user
+        include ../../partials/navbar-info-user.pug
+      .col-9
+        .avatar-user
+          img()
