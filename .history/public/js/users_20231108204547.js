@@ -145,7 +145,7 @@ if (dataUsersAccept) {
     }
   });
 }
-// End SERVER_RETURN_INFO_ACCEPT_FRIEND
+// End
 
 // SERVER_RETURN_USER_ID_CANCEL_FRIEND
 socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
@@ -153,11 +153,6 @@ socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
 
   if (boxUserRemove) {
     const dataUsersAccept = document.querySelector("[data-users-accept]");
-    const userIdB = badgeUsersAccept.getAttribute("badge-users-accept");
-
-    if (userIdB === data.userIdB) {
-      dataUsersAccept.removeChild(boxUserRemove);
-    }
   }
 });
-// end SERVER_RETURN_USER_ID_CANCEL_FRIEND
+// end

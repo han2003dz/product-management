@@ -110,10 +110,7 @@ module.exports = (res) => {
         lengthAcceptFriends: lengthAcceptFriends,
       });
 
-      socket.broadcast.emit("SERVER_RETURN_USER_ID_CANCEL_FRIEND", {
-        userIdB: usersId,
-        userIdA: myId,
-      });
+      socket.broadcast.emit("SERVER_RETURN_")
     });
 
     socket.on("CLIENT_ACCEPT_FRIEND", async (usersId) => {

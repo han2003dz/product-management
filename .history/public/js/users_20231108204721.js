@@ -145,7 +145,7 @@ if (dataUsersAccept) {
     }
   });
 }
-// End SERVER_RETURN_INFO_ACCEPT_FRIEND
+// End
 
 // SERVER_RETURN_USER_ID_CANCEL_FRIEND
 socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
@@ -160,4 +160,4 @@ socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
     }
   }
 });
-// end SERVER_RETURN_USER_ID_CANCEL_FRIEND
+// end
