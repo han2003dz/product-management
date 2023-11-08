@@ -81,6 +81,8 @@ module.exports.friends = async (req, res) => {
 
   const myId = await User.findOne({ _id: userId });
 
+  console.log(myId);
+
   const friendList = myId.friendList;
 
   const friendListId = friendList.map((item) => item.user_id);

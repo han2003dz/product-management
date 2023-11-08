@@ -147,18 +147,7 @@ socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
   }
 
   // trang danh sach người dùng
-  const dataUsersNotFriend = document.querySelector("[data-users-not-friend]");
-  if (dataUsersNotFriend) {
-    const userId = dataUsersNotFriend.getAttribute("data-users-not-friend");
-    if (userId === data.userId) {
-      const boxUserRemove = dataUsersNotFriend.querySelector(
-        `[user-id='${data.infoUserA._id}']`
-      );
-      if (boxUserRemove) {
-        dataUsersNotFriend.removeChild(boxUserRemove);
-      }
-    }
-  }
+  
 });
 // End SERVER_RETURN_INFO_ACCEPT_FRIEND
 

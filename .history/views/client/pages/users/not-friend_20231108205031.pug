@@ -11,9 +11,9 @@ block main
         +box-head("Danh sách người dùng")
 
 
-    .row(data-users-not-friend=user.id)
+    .row(data-users-not-friend)
       each user in users
-        .col-6(user-id=user.id)
+        .col-6
           div(class="box-user")
             div(class="inner-avatar")
               img(

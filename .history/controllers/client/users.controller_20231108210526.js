@@ -91,8 +91,8 @@ module.exports.friends = async (req, res) => {
     deleted: false,
   }).select("id fullName avatar statusOnline");
 
-  res.render("client/pages/users/friends", {
-    pageTitle: "Danh sách bạn bè",
+  res.render("client/pages/users/accept", {
+    pageTitle: "Danh sách lời mời",
     users: users,
   });
 };

@@ -84,16 +84,12 @@ if (badgeUsersAccept) {
 
 // SERVER_RETURN_INFO_ACCEPT_FRIEND
 socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
-  const dataUsersAccept = document.querySelector("[data-users-accept]");
-  if (dataUsersAccept) {
-    const userId = dataUsersAccept.getAttribute("data-users-accept");
-
-    if (userId === data.usersId) {
-      // vẽ user ra giao diện
-      const div = document.createElement("div");
-      div.classList.add("col-6");
-      div.setAttribute("user-id", data.infoUserA._id);
-      div.innerHTML = `
+  if (userId === data.usersId) {
+    // vẽ user ra giao diện
+    const div = document.createElement("div");
+    div.classList.add("col-6");
+    div.setAttribute("user-id", data.infoUserA._id);
+    div.innerHTML = `
       <div class="box-user">
         <div class="inner-avatar">
           <img src="/images/avatar.png" alt="${data.infoUserA.fullName}">
@@ -134,32 +130,22 @@ socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
       </div>
     `;
 
-      dataUsersAccept.appendChild(div);
+    dataUsersAccept.appendChild(div);
 
-      // hủy lời mời kết bạn
-      const buttonRefuse = div.querySelector("[btn-refuse-friend]");
-      refuseFriend(buttonRefuse);
+    // hủy lời mời kết bạn
+    const buttonRefuse = div.querySelector("[btn-refuse-friend]");
+    refuseFriend(buttonRefuse);
 
-      // chấp nhận lời mời kết bạn
-      const buttonAccept = div.querySelector("[btn-accept-friend");
-      acceptFriend(buttonAccept);
-    }
-  }
-
-  // trang danh sach người dùng
-  const dataUsersNotFriend = document.querySelector("[data-users-not-friend]");
-  if (dataUsersNotFriend) {
-    const userId = dataUsersNotFriend.getAttribute("data-users-not-friend");
-    if (userId === data.userId) {
-      const boxUserRemove = dataUsersNotFriend.querySelector(
-        `[user-id='${data.infoUserA._id}']`
-      );
-      if (boxUserRemove) {
-        dataUsersNotFriend.removeChild(boxUserRemove);
-      }
-    }
+    // chấp nhận lời mời kết bạn
+    const buttonAccept = div.querySelector("[btn-accept-friend");
+    acceptFriend(buttonAccept);
   }
 });
+const dataUsersAccept = document.querySelector("[data-users-accept]");
+if (dataUsersAccept) {
+  const userId = dataUsersAccept.getAttribute("data-users-accept");
+  
+}
 // End SERVER_RETURN_INFO_ACCEPT_FRIEND
 
 // SERVER_RETURN_USER_ID_CANCEL_FRIEND

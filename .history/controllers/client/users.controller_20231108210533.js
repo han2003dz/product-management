@@ -92,7 +92,7 @@ module.exports.friends = async (req, res) => {
   }).select("id fullName avatar statusOnline");
 
   res.render("client/pages/users/friends", {
-    pageTitle: "Danh sách bạn bè",
+    pageTitle: "Danh sách lời mời",
     users: users,
   });
 };

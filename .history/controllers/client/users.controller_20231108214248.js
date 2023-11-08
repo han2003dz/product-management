@@ -80,6 +80,7 @@ module.exports.friends = async (req, res) => {
   const userId = res.locals.user.id;
 
   const myId = await User.findOne({ _id: userId });
+  
 
   const friendList = myId.friendList;
 

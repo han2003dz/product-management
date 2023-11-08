@@ -74,25 +74,24 @@ module.exports.accept = async (req, res) => {
 };
 
 // [GET] /users/friends
-module.exports.friends = async (req, res) => {
+module.exports.accept = async (req, res) => {
   usersSocket(res);
 
   const userId = res.locals.user.id;
 
   const myId = await User.findOne({ _id: userId });
 
-  const friendList = myId.friendList;
-
-  const friendListId = friendList.map((item) => item.user_id);
+  // lấy ra các id trong mảng acceptFriends (mảng lời mời được gửi tới)
+  const acceptFriends = myId.acceptFriends;
 
   const users = await User.find({
-    _id: { $in: friendListId },
+    _id: { $in: acceptFriends },
     status: "active",
     deleted: false,
-  }).select("id fullName avatar statusOnline");
+  }).select("id fullName avatar");
 
-  res.render("client/pages/users/friends", {
-    pageTitle: "Danh sách bạn bè",
+  res.render("client/pages/users/accept", {
+    pageTitle: "Danh sách lời mời",
     users: users,
   });
 };
