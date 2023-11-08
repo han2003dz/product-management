@@ -19,7 +19,7 @@ module.exports.notFriend = async (req, res) => {
       { _id: { $ne: userId } }, // lấy ra người dùng có id khác với id hiện tại
       { _id: { $nin: requestFriends } }, //lấy ra id người dùng trong danh sách gửi lời mời
       { _id: { $nin: acceptFriends } }, // lấy ra id người dùng trong danh sách chấp nhận
-      { _id: { $nin: friendListId } },
+      
     ],
     status: "active",
     deleted: false,
