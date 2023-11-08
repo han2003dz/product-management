@@ -1,0 +1,61 @@
+include ../mixins/sub-menu.pug
+
+header.header
+  .container
+    .row.align-items-center
+      .col-1.header-item
+        .inner-logo
+          a(href="/")
+            img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
+      
+      .col-4.header-item
+        .inner-menu
+          ul
+            li
+              a(href="/") 
+                i(class="fa-solid fa-house")
+            li(class="sub-menu")
+              -const pathProduct = "/products";
+              a(href=pathProduct) Sản phẩm
+                +sub-menu(layoutProductsCategory, pathProduct)
+            li
+              a(href="/news") Tin tức
+            
+            li
+              a(href="/cart") 
+                
+                | (#{miniCart ? miniCart.totalQuantity : 0})
+      .col-3.header-item
+        form(
+          action="/search"
+          method="GET"
+        ) 
+          div(class="form-group d-flex mb-0 border border-light rounded-3 form-search")
+            input(
+              type="text"
+              placeholder="Nhập từ khóa..."
+              class="form-control border-0"
+              name="keyword"
+              value=keyword
+            )
+            button(
+              type="submit"
+              class="btn btn-light rounded-0"
+            ) 
+              i(class="fa-solid fa-magnifying-glass")
+      .col-4.header-item
+        .inner-menu
+            ul
+              if(user)
+                li 
+                  a(href='/chat') Chat
+                li
+                  a(href="/user/info") #{user.fullName}
+                li
+                  a(href="/user/logout") Đăng xuất
+              else
+                li
+                  a(href="/user/login") Đăng nhập
+              li
+                a(href="/user/register") Đăng ký
+                    

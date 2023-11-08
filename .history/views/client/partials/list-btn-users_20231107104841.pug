@@ -1,0 +1,23 @@
+.row
+  .col-12
+    a(
+      class="btn btn-primary m-1"
+      href="/users/not-friend"
+    ) Danh sách người dùng
+    a(
+      class="btn btn-primary m-1"
+      href="/users/friends"
+    ) Danh sách bạn bè
+    a(
+      class="btn btn-outline-primary m-1"
+      href="/users/request"
+    ) 
+      i(class="bi bi-person-fill-up fs-4")
+    a(
+      class="btn btn-primary m-1"
+      href="/users/accept"
+    ) 
+      i class="bi bi-person-fill-down"></i>
+      span(class="badge badge-light"
+        badge-users-accept=user.id
+      ) #{user.acceptFriends.length}
