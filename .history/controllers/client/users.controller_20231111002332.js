@@ -109,5 +109,6 @@ module.exports.friends = async (req, res) => {
 module.exports.roomChat = async (req, res) => {
   res.render("client/pages/roomChat/room-chat", {
     pageTitle: "Phòng chat",
-  });
+    
+  })
 };

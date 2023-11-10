@@ -108,6 +108,6 @@ module.exports.friends = async (req, res) => {
 // [GET] /users/room-chat
 module.exports.roomChat = async (req, res) => {
   res.render("client/pages/roomChat/room-chat", {
-    pageTitle: "Phòng chat",
-  });
+    pageTitle: "Phòng chat"
+  })
 };
