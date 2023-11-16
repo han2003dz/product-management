@@ -1,6 +1,6 @@
 const User = require("../../models/user.model");
 const usersSocket = require("../../sockets/client/users.socket");
-const RoomChat = require("../../models/room-chat.model");
+
 // [GET] users/not-friend
 module.exports.notFriend = async (req, res) => {
   usersSocket(res);
@@ -8,7 +8,6 @@ module.exports.notFriend = async (req, res) => {
   const user = await User.findOne({
     _id: userId,
   });
-  //
 
   const requestFriends = user.requestFriends;
   const acceptFriends = user.acceptFriends;
@@ -108,58 +107,12 @@ module.exports.friends = async (req, res) => {
 
 // [GET] /users/room-chat
 module.exports.roomChat = async (req, res) => {
-  const userId = res.locals.user.id;
-  // console.log(userId);
-  const listRoomChat = await RoomChat.find({
-    "users.user_id": userId,
-    typeRoom: "group",
-    deleted: false,
-  });
   res.render("client/pages/roomChat/room-chat", {
-    pageTitle: "Danh sách phòng chat",
-    listRoomChat,
+    pageTitle: "Phòng chat",
   });
 };
 
 // [GET] /users/room-chat/create
 module.exports.createRoomChat = async (req, res) => {
-  const friendList = res.locals.user.friendList;
-  // console.log(friendList);
-  for (const friend of friendList) {
-    const infoFriend = await User.findOne({
-      _id: friend.user_id,
-      deleted: false,
-    }).select("fullName avatar statusOnline");
-
-    friend.infoFriend = infoFriend;
-  }
-  res.render("client/pages/roomChat/create-room-chat", {
-    pageTitle: "Phòng chat",
-    friendList: friendList,
-  });
-};
-
-// [POST] /users/room-chat/createPost
-module.exports.createRoomChatPost = async (req, res) => {
-  const title = req.body.title;
-  const usersId = req.body.usersId;
-  const dataRoom = {
-    title: title,
-    typeRoom: "group",
-    users: [],
-  };
-  for (const userId of usersId) {
-    dataRoom.users.push({
-      user_id: userId,
-      role: "user",
-    });
-  }
-  dataRoom.users.push({
-    user_id: res.locals.user.id,
-    role: "superAdmin",
-  });
-
-  const roomChat = new RoomChat(dataRoom);
-  await roomChat.save();
-  res.redirect(`/chat/${roomChat.id}`);
+  res.render("client/pages/roomChat/");
 };

@@ -8,7 +8,7 @@ module.exports.notFriend = async (req, res) => {
   const user = await User.findOne({
     _id: userId,
   });
-  //
+  
 
   const requestFriends = user.requestFriends;
   const acceptFriends = user.acceptFriends;

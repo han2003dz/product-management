@@ -8,7 +8,6 @@ module.exports.notFriend = async (req, res) => {
   const user = await User.findOne({
     _id: userId,
   });
-  //
 
   const requestFriends = user.requestFriends;
   const acceptFriends = user.acceptFriends;
@@ -109,22 +108,18 @@ module.exports.friends = async (req, res) => {
 // [GET] /users/room-chat
 module.exports.roomChat = async (req, res) => {
   const userId = res.locals.user.id;
-  // console.log(userId);
   const listRoomChat = await RoomChat.find({
-    "users.user_id": userId,
-    typeRoom: "group",
-    deleted: false,
-  });
+    "user.user"
+  })
   res.render("client/pages/roomChat/room-chat", {
-    pageTitle: "Danh sách phòng chat",
-    listRoomChat,
+    pageTitle: "Tạo phòng chat",
   });
 };
 
 // [GET] /users/room-chat/create
 module.exports.createRoomChat = async (req, res) => {
   const friendList = res.locals.user.friendList;
-  // console.log(friendList);
+  console.log(friendList);
   for (const friend of friendList) {
     const infoFriend = await User.findOne({
       _id: friend.user_id,

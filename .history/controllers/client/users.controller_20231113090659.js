@@ -8,7 +8,6 @@ module.exports.notFriend = async (req, res) => {
   const user = await User.findOne({
     _id: userId,
   });
-  //
 
   const requestFriends = user.requestFriends;
   const acceptFriends = user.acceptFriends;
@@ -115,6 +114,7 @@ module.exports.roomChat = async (req, res) => {
     typeRoom: "group",
     deleted: false,
   });
+  console.log(listRoomChat);
   res.render("client/pages/roomChat/room-chat", {
     pageTitle: "Danh sách phòng chat",
     listRoomChat,

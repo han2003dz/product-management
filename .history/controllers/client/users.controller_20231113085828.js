@@ -8,7 +8,6 @@ module.exports.notFriend = async (req, res) => {
   const user = await User.findOne({
     _id: userId,
   });
-  //
 
   const requestFriends = user.requestFriends;
   const acceptFriends = user.acceptFriends;
@@ -111,10 +110,11 @@ module.exports.roomChat = async (req, res) => {
   const userId = res.locals.user.id;
   // console.log(userId);
   const listRoomChat = await RoomChat.find({
-    "users.user_id": userId,
+    "user.user_id": userId,
     typeRoom: "group",
     deleted: false,
   });
+  // console.log(listRoomChat);
   res.render("client/pages/roomChat/room-chat", {
     pageTitle: "Danh sách phòng chat",
     listRoomChat,
@@ -132,6 +132,7 @@ module.exports.createRoomChat = async (req, res) => {
     }).select("fullName avatar statusOnline");
 
     friend.infoFriend = infoFriend;
+    
   }
   res.render("client/pages/roomChat/create-room-chat", {
     pageTitle: "Phòng chat",
