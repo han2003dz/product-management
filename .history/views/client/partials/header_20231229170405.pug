@@ -12,7 +12,8 @@ header.header
         .inner-menu
           ul
             li
-              a(href="/") Trang chủ
+              a(href="/") 
+                i(class="fa-solid fa-house")
             li(class="sub-menu")
               -const pathProduct = "/products";
               a(href=pathProduct) Sản phẩm
@@ -21,13 +22,15 @@ header.header
               a(href="/news") Tin tức
             
             li
-              a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : 0})
+              a(href="/cart") 
+                i(class="fa-solid fa-cart-plus")
+                sup (#{miniCart ? miniCart.totalQuantity : 0})
       .col-3.header-item
         form(
           action="/search"
           method="GET"
         ) 
-          div(class="form-group d-flex mb-0 border rounded-3 form-search")
+          div(class="form-group d-flex mb-0 border border-light rounded-3 form-search")
             input(
               type="text"
               placeholder="Nhập từ khóa..."
@@ -37,21 +40,24 @@ header.header
             )
             button(
               type="submit"
-              class="btn btn-primary rounded-0"
-            ) Tìm
+              class="btn btn-light rounded-0"
+            ) 
+              i(class="fa-solid fa-magnifying-glass")
       .col-4.header-item
         .inner-menu
-            ul
-              if(user)
-                li 
-                  a(href='/chat') Chat
-                li
-                  a(href="/user/info") #{user.fullName}
-                li
-                  a(href="/user/logout") Đăng xuất
-              else
-                li
-                  a(href="/user/login") Đăng nhập
+          ul
+            if(user)
+              li 
+                a(href='/users/friends') 
+                  i(class="bi bi-chat-dots")
               li
-                a(href="/user/register") Đăng ký
-                    
+                a(href="/user/info") #{user.fullName}
+              li
+                a(href="/user/logout") Đăng xuất
+              
+            else
+              li
+                a(href="/user/login") Đăng nhập
+            li
+              a(href="/user/register") Đăng ký
+                  

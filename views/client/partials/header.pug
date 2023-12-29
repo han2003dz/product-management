@@ -45,19 +45,19 @@ header.header
               i(class="fa-solid fa-magnifying-glass")
       .col-4.header-item
         .inner-menu
-            ul
-              if(user)
-                li 
-                  a(href='/users/friends') 
-                    i(class="bi bi-chat-dots")
-                li
-                  a(href="/user/info") #{user.fullName}
-                li
-                  a(href="/user/logout") Đăng xuất
-                
-              else
-                li
-                  a(href="/user/login") Đăng nhập
+          ul
+            if(user)
+              li 
+                a(href='/users/friends') 
+                  i(class="bi bi-chat-dots")
               li
-                a(href="/user/register") Đăng ký
-                    
+                a(href="/user/info") #{user.fullName}
+              li
+                a(href="/user/logout") Đăng xuất
+              
+            else
+              li
+                a(href="/user/login") Đăng nhập
+            li
+              a(href="/user/register") Đăng ký
+                  
